@@ -32,7 +32,7 @@ class Variations_Hider {
     }
 
     if ( ! wp_next_scheduled( 'wooms_cron_variations_hiding' ) ) {
-      wp_schedule_event( time(), 'wooms_cron_walker_shedule', 'wooms_cron_variations_hiding' );
+      wp_schedule_event( time(), 'every_minute', 'wooms_cron_variations_hiding' );
     }
 
   }

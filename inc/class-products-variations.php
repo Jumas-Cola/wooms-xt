@@ -300,6 +300,9 @@ class Variations
         $variation = wc_get_product($variation_id);
         $variation->set_name($variant_data['name']);
 
+        // Установка описания
+        $variation->set_description($variant_data['inTransit']);
+
         $variation->set_stock_status('instock');
 
         if ( ! empty($variant_data["salePrices"][0]['value'])) {
@@ -613,7 +616,7 @@ class Variations
         }
 
         if ( ! wp_next_scheduled('wooms_cron_variation_walker')) {
-            wp_schedule_event(time(), 'wooms_cron_walker_shedule', 'wooms_cron_variation_walker');
+            wp_schedule_event(time(), 'every_minute', 'wooms_cron_variation_walker');
         }
 
     }
