@@ -569,12 +569,22 @@ class OrderSender
             $name = 'Клиент по заказу №' . $order->get_order_number();
         }
 
+        $inn = get_post_meta( $order_id, '_billing_new_fild12', true );
+        $kpp = get_post_meta( $order_id, '_billing_new_fild13', true );
+        $ogrn = get_post_meta( $order_id, '_billing_new_fild14', true );
+        $okpo = get_post_meta( $order_id, '_billing_new_fild15', true );
+
         $data = array(
             "name"          => $name,
             "companyType"   => self::get_data_order_company_type($order_id),
             "legalAddress"  => self::get_data_order_address($order_id),
             "actualAddress" => self::get_data_order_address($order_id),
             "phone"         => self::get_data_order_phone($order_id),
+			"inn" => $inn,
+			"kpp" => $kpp,
+			"ogrn" => $ogrn,
+			"okpo" => $okpo,
+            "description" => "ИНН: {$inn}; КПП: {$kpp}; ОГРН: {$ogrn}; ОКПО: {$okpo}"
         );
 
         if (empty($email)) {
